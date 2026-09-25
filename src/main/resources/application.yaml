@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: eztickets
+  datasource:
+    url: jdbc:postgresql://localhost:5432/eztickets
+    username: eztickets_app
+    password: ${DATABASE_PASSWORD}
