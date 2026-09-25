@@ -1,32 +1,11 @@
-table: tickets
+CREATE TABLE tickets (
+                         id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+                         title VARCHAR(200) NOT NULL,
+                         description TEXT NOT NULL,
+                         customer_email VARCHAR(254) NOT NULL,
+                         status VARCHAR(20) NOT NULL DEFAULT 'OPEN',
+                         created_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
-id
-    BIGINT
-    generated automatically
-    primary key
-
-title
-    max 200 characters
-    required
-
-description
-    unrestricted text
-    required
-
-customer_email
-    max 254 characters
-    required
-
-status
-    required
-    defaults to OPEN
-    only:
-        OPEN
-        IN_PROGRESS
-        RESOLVED
-        CLOSED
-
-created_at
-    timezone-aware timestamp
-    required
-    defaults to the current time
+                         CONSTRAINT chk_tickets_status
+                             CHECK (status IN ('OPEN', 'IN_PROGRESS', 'RESOLVED', 'CLOSED'))
+);

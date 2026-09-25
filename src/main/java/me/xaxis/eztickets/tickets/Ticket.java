@@ -1,0 +1,70 @@
+package me.xaxis.eztickets.tickets;
+
+import jakarta.persistence.*;
+import org.hibernate.annotations.CreationTimestamp;
+
+import java.time.Instant;
+
+@Entity
+@Table(name = "tickets")
+public class Ticket {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(nullable = false, length = 200)
+    private String title;
+
+    @Column(nullable = false)
+    private String description;
+
+    @Column(name = "customer_email", nullable = false, length = 254)
+    private String email;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+
+    private TicketStatus status;
+
+    @Column(name = "created_at", nullable = false, updatable = false)
+    @CreationTimestamp
+    private Instant createdAt;
+
+    protected Ticket() {
+    }
+    public Ticket(
+            String title,
+            String description,
+            String email
+    ) {
+        this.title = title;
+        this.description = description;
+        this.email = email;
+        this.status = TicketStatus.OPEN;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public TicketStatus getStatus() {
+        return status;
+    }
+
+    public Instant getCreatedAt() {
+        return createdAt;
+    }
+}
