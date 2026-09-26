@@ -1,6 +1,8 @@
 package me.xaxis.eztickets;
 
 import jakarta.transaction.Transactional;
+import me.xaxis.eztickets.api.TicketController;
+import me.xaxis.eztickets.api.TicketResponse;
 import me.xaxis.eztickets.tickets.Ticket;
 import me.xaxis.eztickets.tickets.TicketRepository;
 import org.junit.jupiter.api.Test;
@@ -17,6 +19,9 @@ class EzticketsApplicationTests {
 
 	@Autowired
 	TicketRepository ticketRepository;
+
+	@Autowired
+	TicketController ticketController;
 
 	@Test
 	void contextLoads() {
